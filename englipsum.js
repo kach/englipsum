@@ -1,7 +1,7 @@
 var englipsum = function() {
     var dict = {
-        "nouns": ["server", "client", "frontend", "backend", "programmer", "hacker", "content", "style", "script", "software", "network", "uptime", "template", "framework", "cache", "host", "domain", "service", "database", "content-delivery network", "repository", "dependency", "bot", "spam", "API", "blog", "link", "optimization", ["search", "engine"], "crawler", "query", "authentication", "cookie"],
-        verbs: ["eats", "crushes", "smells", "hugs", "teaches", "destroys", "adores", "loves", "defeats", "catches", "finds", "kicks", "embodies", "represents", "saves", "addresses"],
+        "nouns": ["server", "client", "frontend", "backend", "programmer", "hacker", "content", "style", "script", "software", "network", "uptime", "template", "framework", "cache", "host", "domain", "service", "database", "content-delivery network", "repository", "dependency", "bot", "spam", "API", "blog", "link", "optimization", ["search", "engine"], "crawler", "query", "authentication", "cookie", "crypto", "algorithm", "module", "browser"],
+        verbs: ["fixes", "breaks", "installs", "uninstalls", "crushes", "smells", "destroys", "adores", "loves", "defeats", "catches", "finds", "kicks", "embodies", "represents", "saves", "addresses", "pings"],
         adjs: ["impatient", "sullen", "happy", "unhappy", "strong", "weak", "rare", "brilliant", "stuffed", "young", "old", "annoying", "smart", "hard-working", "mature", "immature", "big", "small", "first", "second", "third", "last", "fast", "slow"],
         advs: ["calmly", "occasionally", "often", "intentionally", "silently", "secretly", "halfheartedly", "instinctively", "never", "always", "decisively", "responsibly"],
         preps: ["near", "beside", "disregarding", "despite"]

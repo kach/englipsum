@@ -8,16 +8,20 @@ It generates grammatically-valid English that makes sense in context. It looks r
 
 Simply include `englipsum.js` in your HTML file. Elements of class `englipsum` will be populated with placeholder text automatically.
 
-    <div class="englipsum"></div>
+```html
+<div class="englipsum"></div>
+```
 
 You can customize settings by including JSON in the element:
 
-    <div class="englipsum">
-    {
-        "paragraphs": 3,
-        "links": true
-    }
-    </div>
+```html
+<div class="englipsum">
+{
+    "paragraphs": 3,
+    "links": true
+}
+</div>
+```
 
 ## Reference
 
@@ -28,3 +32,29 @@ You can customize settings by including JSON in the element:
 | `links`      | Generate random links? (they are uniquely stamped so that testing `a:visited` is easy) |
 | `ems`        | Italicize random words? |
 | `dict`       | Provide your own dictionary. Object with fields (all optional) `nouns`, `verbs`, `adjs`, `advs` |
+
+## Examples
+
+Create a to-do list:
+
+```html
+<ol>
+    <li class="englipsum"> {"sentences": 1, "paragraphs": 1}</li>
+    <li class="englipsum"> {"sentences": 1, "paragraphs": 1}</li>
+    <li class="englipsum"> {"sentences": 1, "paragraphs": 1}</li>
+    <li class="englipsum"> {"sentences": 1, "paragraphs": 1}</li>
+</ol>
+```
+
+Placeholder text about animals:
+
+```html
+<div class="englipsum">
+{
+    "dict": {
+        "nouns": ["cow", "pig", "sheep", "fish", "farmer", "tractor"],
+        "verbs": ["makes", "grows", "works", "produces", "helps"]
+    }
+}
+</div>
+```
