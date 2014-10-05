@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="englipsum.js"></script>
+        </script>
+        <style>
+            html {
+                padding: 0px;
+                margin: 0px;
+            }
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+            #demo-text {
+                max-width: 40em;
+                margin-left: auto;
+                margin-right: auto;
+                font-family: Georgia, Times, serif;
+                padding: 10px;
+                text-indent: 1em;
+                line-height: 1.6em;
+                text-align: justify;
+
+                -webkit-hyphens: auto;
+                -moz-hyphens: auto;
+                -ms-hyphens: auto;
+                hyphens: auto;
+
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+            #demo-text q {
+                quotes: "“" "”" "‘" "’";
+            }
+            #demo-text:first-line {
+                font-variant: small-caps;
+            }
+            #demo-text:first-letter {
+                font-size: 5em;
+                font-family: Baskerville, Times, serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="demo-text" class="englipsum">{"paragraphs": 7, "sentences": 5}</div>
+    </body>
+</html>

@@ -1,8 +1,8 @@
 var englipsum = function() {
     var dict = {
-        nouns: ["person", "friend", "father", "mother", "brother", "sister", "son", "daughter", "boy", "girl", "man", "woman", "child", "teacher", "musician", "knight", "warrior", "ninja", "tailor", "sailor", "farmer", "politician", "hacker", "truth", "villain", "demigod", "webpage", "guardian", "prisoner", "champion", "doctor", "nurse", "athlete", "coach", "captain", "alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"], 
-        verbs: ["eats", "crushes", "smells", "hugs", "teaches", "destroys", "adores", "loves", "defeats", "catches", "finds", "kicks", "licks", "embodies", "represents", "saves", "addresses"],
-        adjs: ["red", "blue", "impatient", "sullen", "happy", "unhappy", "strong", "weak", "purple", "rare", "brilliant", "stuffed", "young", "old", "rich", "poor", "annoying", "smart", "hard-working"],
+        nouns: ["person", "friend", "father", "mother", "brother", "sister", "son", "daughter", "boy", "girl", "man", "woman", "child", "teacher", "musician", "knight", "warrior", "ninja", "tailor", "sailor", "farmer", "politician", "pilot", "swimmer", "diver", "golfer", "hacker", "truth", "metaphor", "allegory", "program", "villain", "demigod", "webpage", "guardian", "prisoner", "champion", "doctor", "nurse", "athlete", "coach", "captain", "alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"], 
+        verbs: ["eats", "crushes", "smells", "hugs", "teaches", "destroys", "adores", "loves", "defeats", "catches", "finds", "kicks", "licks", "embodies", "represents", "saves", "addresses", "consoles", "pardons", "accuses"],
+        adjs: ["red", "blue", "impatient", "sullen", "happy", "unhappy", "strong", "weak", "purple", "rare", "brilliant", "stuffed", "young", "old", "rich", "poor", "annoying", "smart", "hard-working", "mature", "immature", "big", "small"],
         advs: ["calmly", "occasionally", "often", "intentionally", "silently", "secretly", "halfheartedly", "instinctively", "never", "always", "decisively", "responsibly"],
         preps: ["near", "beside", "disregarding", "despite"]
     };
@@ -78,6 +78,18 @@ var englipsum = function() {
             "default": "\n\n",
             "html": "</p>\n\n",
         },
+        startem: {
+            "default": "*",
+            "html": "<em>",
+            "tex": "\\textit{",
+            "md": "*"
+        },
+        endem: {
+            "default": "*",
+            "html": "</em>",
+            "tex": "}",
+            "md": "*"
+        },
         comma: {
             "default": ","
         },
@@ -106,6 +118,12 @@ var englipsum = function() {
             "tex": "---",
             "md": "--",
             "plain": "---"
+        },
+        lparen: {
+            "default": "("
+        },
+        rparen: {
+            "default": ")"
         }
     };
 
@@ -130,10 +148,11 @@ var englipsum = function() {
         [simple, punct.comma, "but", simple],
         [simple, punct.comma, "therefore", simple],
         [simple, punct.comma, "however", punct.comma, simple],
-        ["consequently", simple],
+        ["consequently", punct.comma, simple],
         ["it", "is", "worth", "noting", "that", simple],
         ["anyhow", punct.comma, simple],
-        [simple, punct.dash, "even", "if", punct.dash]
+        [simple, punct.dash, "even", "if", simple],
+        [simple, punct.lparen, "even", "though", simple, punct.rparen]
     ]);
     var sentence = $.lit($.ch([simple, compound]), $.ch([punct.period, punct.period, punct.period, punct.exclamation]));
 
@@ -143,27 +162,18 @@ var englipsum = function() {
         var shouldCapitalize = true;
         for (var i=0; i<words.length; i++) {
             var tok = words[i];
-            if (tok === punct.comma) {
-                output += punct.select(punct.comma, options.target);
-            } else if (tok === punct.semicolon) {
-                output += punct.select(punct.semicolon, options.target);
-            } else if (tok === punct.period) {
-                output += punct.select(punct.period, options.target);
-                shouldCapitalize = true;
-            } else if (tok === punct.exclamation) {
-                output += punct.select(punct.exclamation, options.target);;
-                shouldCapitalize = true;
-            } else if (tok === punct.open) {
-                output += " " + punct.select(punct.open, options.target);
-            } else if (tok === punct.close) {
-                output += punct.select(punct.close, options.target);
-            } else {
+            if (tok.constructor === String) {
                 if (shouldCapitalize) {
                     output += " " + tok.charAt(0).toUpperCase();
                     output += tok.substring(1);
                     shouldCapitalize = false;
                 } else {
                     output+= " " + tok.toString();
+                }
+            } else {
+                output += punct.select(tok, options.target);
+                if (tok === punct.period || tok === punct.exclamation) {
+                    shouldCapitalize = true;
                 }
             }
         }
@@ -188,10 +198,21 @@ var englipsum = function() {
         return str;
     }
 
-    console.log(generate({"target": "html"}));
-    var exp = format;
-    if (typeof(module) !== undefined) {
+    var exp = generate;
+    if (typeof window === 'undefined') {
         module.exports = exp;
+    } else {
+        window.addEventListener("load", function() {
+            [].forEach.call(document.getElementsByClassName("englipsum"), function(el) {
+                var opts = {};
+                try {
+                    opts = JSON.parse(el.innerText);
+                } catch(e) {
+                }
+                opts.target = "html";
+                el.innerHTML = englipsum(opts);
+            });
+        });
     }
     return exp;
 }();
