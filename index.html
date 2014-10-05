@@ -26,10 +26,13 @@
                 -moz-hyphens: auto;
                 -ms-hyphens: auto;
                 hyphens: auto;
-
-                -webkit-column-count: 2;
-                -moz-column-count: 2;
-                column-count: 2;
+            }
+            @media screen and (min-width: 40em) {
+                #demo-text {
+                    -webkit-column-count: 2;
+                    -moz-column-count: 2;
+                    column-count: 2;
+                }
             }
             #demo-text q {
                 quotes: "“" "”" "‘" "’";
@@ -39,11 +42,20 @@
             }
             #demo-text:first-letter {
                 font-size: 5em;
-                font-family: Baskerville, Times, serif;
+                font-family: Didot, Baskerville, Times, serif;
+                margin-right: 3px;
             }
         </style>
     </head>
     <body>
-        <div id="demo-text" class="englipsum">{"paragraphs": 7, "sentences": 5}</div>
+        <div id="demo-text" class="englipsum">
+            {
+                "paragraphs": 7,
+                "sentences": 4,
+                "dict": {
+                    "nouns": ["server", "client", "frontend", "backend", "programmer", "hacker", "content", "styles", "scripts", "software", "network", "uptime", "template", "framework", "cache", "host", "domain", "service", "database"]
+                }
+            }
+        </div>
     </body>
 </html>

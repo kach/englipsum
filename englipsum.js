@@ -1,8 +1,8 @@
 var englipsum = function() {
     var dict = {
-        nouns: ["person", "friend", "father", "mother", "brother", "sister", "son", "daughter", "boy", "girl", "man", "woman", "child", "teacher", "musician", "knight", "warrior", "ninja", "tailor", "sailor", "farmer", "politician", "pilot", "swimmer", "diver", "golfer", "hacker", "truth", "metaphor", "allegory", "program", "villain", "demigod", "webpage", "guardian", "prisoner", "champion", "doctor", "nurse", "athlete", "coach", "captain", "alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"], 
+        nouns: ["person", "friend", "father", "mother", "brother", "sister", "son", "daughter", "boy", "girl", "man", "woman", "child", "teacher", "musician", "knight", "warrior", "ninja", "tailor", "sailor", "farmer", "politician", "pilot", "swimmer", "diver", "golfer", "hacker", "truth", "metaphor", "allegory", "program", "banana", "server", "client", "lawyer", "blog", "internet", "domain", "proxy", "villain", "demigod", "webpage", "guardian", "prisoner", "champion", "doctor", "nurse", "athlete", "coach", "captain", "alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"], 
         verbs: ["eats", "crushes", "smells", "hugs", "teaches", "destroys", "adores", "loves", "defeats", "catches", "finds", "kicks", "licks", "embodies", "represents", "saves", "addresses", "consoles", "pardons", "accuses"],
-        adjs: ["red", "blue", "impatient", "sullen", "happy", "unhappy", "strong", "weak", "purple", "rare", "brilliant", "stuffed", "young", "old", "rich", "poor", "annoying", "smart", "hard-working", "mature", "immature", "big", "small"],
+        adjs: ["red", "blue", "impatient", "sullen", "happy", "unhappy", "strong", "weak", "purple", "rare", "brilliant", "stuffed", "young", "old", "rich", "poor", "annoying", "smart", "hard-working", "mature", "immature", "big", "small", "first", "second", "third", "last"],
         advs: ["calmly", "occasionally", "often", "intentionally", "silently", "secretly", "halfheartedly", "instinctively", "never", "always", "decisively", "responsibly"],
         preps: ["near", "beside", "disregarding", "despite"]
     };
@@ -128,33 +128,55 @@ var englipsum = function() {
     };
 
 
-    var noun = $.ch(dict.nouns);
-    var cn = $.lit($.ch(["the", "every", "this", "that", "one"]), $.mb($.ch(dict.adjs)), noun);
-    var pf = $.lit($.ch(dict.preps), cn);
-    var simple = $.lit(cn, $.mb($.ch(dict.advs)), $.ch(dict.verbs), cn, $.mb(pf));
-    var compound = $.ch([
-        ["when", simple, punct.comma, simple],
-        ["if", simple, punct.comma, "then", simple],
-        ["while", simple, punct.comma, simple],
-        [simple, "until", simple],
-        ["sometimes", simple],
-        ["since", simple, punct.comma, simple],
-        [simple, punct.semicolon, simple],
-        ["meanwhile", punct.comma, simple],
-        ["however", punct.comma, simple],
-        ["even", "though", simple, punct.comma, simple],
-        ["as", "they", "say", punct.comma, punct.open, simple, punct.close],
-        [punct.open, simple, punct.comma, punct.close, "said", cn],
-        [simple, punct.comma, "but", simple],
-        [simple, punct.comma, "therefore", simple],
-        [simple, punct.comma, "however", punct.comma, simple],
-        ["consequently", punct.comma, simple],
-        ["it", "is", "worth", "noting", "that", simple],
-        ["anyhow", punct.comma, simple],
-        [simple, punct.dash, "even", "if", simple],
-        [simple, punct.lparen, "even", "though", simple, punct.rparen]
-    ]);
-    var sentence = $.lit($.ch([simple, compound]), $.ch([punct.period, punct.period, punct.period, punct.exclamation]));
+
+
+    function makeparagraph(options) {
+        var noun = $.ch( (options.dict && options.dict.nouns) || dict.nouns);
+        var cn = $.lit(
+            $.ch(["the", "every", "this", "that", "one"]),
+            $.mb($.ch( (options.dict && options.dict.adjs) || dict.adjs)),
+            noun
+        );
+        var pf = $.lit($.ch(dict.preps), cn);
+        var simple = $.lit(
+            cn,
+            $.mb(
+                $.ch( (options.dict && options.dict.adverbs) || dict.advs)
+            ),
+            $.ch( (options.dict && options.dict.verbs) || dict.verbs),
+            cn,
+            $.mb(pf)
+        );
+        var compound = $.ch([
+            ["when", simple, punct.comma, simple],
+            ["if", simple, punct.comma, "then", simple],
+            ["while", simple, punct.comma, simple],
+            [simple, "until", simple],
+            ["sometimes", simple],
+            ["since", simple, punct.comma, simple],
+            [simple, punct.semicolon, simple],
+            ["meanwhile", punct.comma, simple],
+            ["however", punct.comma, simple],
+            ["even", "though", simple, punct.comma, simple],
+            ["as", "they", "say", punct.comma, punct.open, simple, punct.close],
+            [punct.open, simple, punct.comma, punct.close, "says", cn],
+            [simple, punct.comma, "but", simple],
+            [simple, punct.comma, "therefore", simple],
+            [simple, punct.comma, "however", punct.comma, simple],
+            ["consequently", punct.comma, simple],
+            ["it", "is", "worth", "noting", "that", simple],
+            ["anyhow", punct.comma, simple],
+            [simple, punct.dash, "even", "if", simple],
+            [simple, punct.lparen, "even", "though", simple, punct.rparen]
+        ]);
+        var sentence = $.lit($.ch([simple, compound]), $.ch([punct.period, punct.period, punct.period, punct.exclamation]));
+        
+        var tokens = [];
+        for (var i=0; i< (options.sentences || 3); i++) {
+            tokens = tokens.concat($.crush(sentence));
+        }
+        return format(tokens, options);
+    }
 
     function format(words, options) {
         options = options || {};
@@ -180,17 +202,9 @@ var englipsum = function() {
         return output;
     };
 
-    function makeparagraph(options) {
-        var tokens = [];
-        for (var i=0; i< (options.sentences || 5); i++) {
-            tokens = tokens.concat($.crush(sentence));
-        }
-        return format(tokens, options);
-    }
-
     function generate(options) {
         var str = "";
-        for (var i=0; i< (options.paragraphs || 3); i++) {
+        for (var i=0; i< (options.paragraphs || 5); i++) {
             str += punct.select(punct.startpara, options.target) +
                 makeparagraph(options) +
                 punct.select(punct.endpara, options.target);
@@ -198,9 +212,11 @@ var englipsum = function() {
         return str;
     }
 
+    
+    // Programmatical beaurocracy.
     var exp = generate;
     if (typeof window === 'undefined') {
-        module.exports = exp;
+        module.exports = exp; // Node friendly :D
     } else {
         window.addEventListener("load", function() {
             [].forEach.call(document.getElementsByClassName("englipsum"), function(el) {
