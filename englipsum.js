@@ -90,6 +90,16 @@ var englipsum = function() {
             "tex": "}",
             "md": "*"
         },
+        startlink: {
+            "default": "_",
+            "html": "<a href='http://example.com/?" + Math.random() + "'>",
+            "md": "["
+        },
+        endlink: {
+            "default": "_",
+            "html": "</a>",
+            "md": "](http://example.com/?id=" + Math.random() + ")"
+        },
         comma: {
             "default": ","
         },
@@ -190,7 +200,12 @@ var englipsum = function() {
                     output += tok.substring(1);
                     shouldCapitalize = false;
                 } else {
-                    output+= " " + tok.toString();
+                    if (options.links && Math.random() < 0.03) {
+                        output += " " + punct.select(punct.startlink, options.target) +
+                            tok + punct.select(punct.endlink, options.target);
+                    } else {
+                        output+= " " + tok.toString();
+                    }
                 }
             } else {
                 output += punct.select(tok, options.target);
