@@ -2,7 +2,7 @@ The accepted Lorem Ipsum text is inherently messy. It has different character ra
 
 Englipsum solves those problems.
 
-It generates grammatically-valid English that makes sense in context. It looks right, thus allowing itself to be ignored.
+It generates grammatically-valid English that makes sense in context. It looks right, thus allowing itself to be ignored. Englipsum pays attention to the little details that make text natural-looking. The default dictionary includes words found on most tech-ey websites.
 
 ## Usage
 

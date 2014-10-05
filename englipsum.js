@@ -192,28 +192,37 @@ var englipsum = function() {
         options = options || {};
         var output = "";
         var shouldCapitalize = true;
+        var dontspace = false;
         for (var i=0; i<words.length; i++) {
             var tok = words[i];
             if (tok.constructor === String) {
+                var space = dontspace ? "" : " ";
+                dontspace = false;
                 if (shouldCapitalize) {
-                    output += " " + tok.charAt(0).toUpperCase();
+                    output += space + tok.charAt(0).toUpperCase();
                     output += tok.substring(1);
                     shouldCapitalize = false;
                 } else {
                     if (options.links && Math.random() < 0.01) {
-                        output += " " + punct.select(punct.startlink, options.target) +
+                        output += space + punct.select(punct.startlink, options.target) +
                             tok + punct.select(punct.endlink, options.target);
                     } else if (options.ems && Math.random() < 0.03) {
-                        output += " " + punct.select(punct.startem, options.target) +
+                        output += space + punct.select(punct.startem, options.target) +
                             tok + punct.select(punct.endem, options.target);
                     } else {
-                        output+= " " + tok.toString();
+                        output+= space + tok.toString();
                     }
                 }
             } else {
+                if (tok === punct.open || tok === punct.lparen) {
+                    output += " ";
+                }
                 output += punct.select(tok, options.target);
                 if (tok === punct.period || tok === punct.exclamation) {
                     shouldCapitalize = true;
+                }
+                if (tok === punct.open || tok === punct.dash || tok === punct.lparen) {
+                    dontspace = true;
                 }
             }
         }
