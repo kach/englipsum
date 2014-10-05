@@ -200,9 +200,12 @@ var englipsum = function() {
                     output += tok.substring(1);
                     shouldCapitalize = false;
                 } else {
-                    if (options.links && Math.random() < 0.03) {
+                    if (options.links && Math.random() < 0.01) {
                         output += " " + punct.select(punct.startlink, options.target) +
                             tok + punct.select(punct.endlink, options.target);
+                    } else if (options.ems && Math.random() < 0.03) {
+                        output += " " + punct.select(punct.startem, options.target) +
+                            tok + punct.select(punct.endem, options.target);
                     } else {
                         output+= " " + tok.toString();
                     }
