@@ -65,76 +65,25 @@ var englipsum = function() {
 
 
 
+    var point = function(x) {
+        return {"toString": function() {return x;}};
+    }
     var punct = {
-        select: function(mark, type) {
-            return mark[type || "default"] || mark["default"];
-        },
-        startpara: {
-            "default": "",
-            "html": "<p>",
-            "plain": "    "
-        },
-        endpara: {
-            "default": "\n\n",
-            "html": "</p>\n\n",
-        },
-        startem: {
-            "default": "*",
-            "html": "<em>",
-            "tex": "\\textit{",
-            "md": "*"
-        },
-        endem: {
-            "default": "*",
-            "html": "</em>",
-            "tex": "}",
-            "md": "*"
-        },
-        startlink: {
-            "default": "_",
-            "html": "<a href='http://example.com/?" + Math.random() + "'>",
-            "md": "["
-        },
-        endlink: {
-            "default": "_",
-            "html": "</a>",
-            "md": "](http://example.com/?id=" + Math.random() + ")"
-        },
-        comma: {
-            "default": ","
-        },
-        semicolon: {
-            "default": ";"
-        },
-        period: {
-            "default": "."
-        },
-        exclamation: {
-            "default": "!"
-        },
-        open: {
-            "default": "\"",
-            "html": "<q>",
-            "tex": "``",
-        },
-        close: {
-            "default": "\"",
-            "html": "</q>",
-            "tex": "\""
-        },
-        dash: {
-            "default": "---",
-            "html": "&mdash;",
-            "tex": "---",
-            "md": "--",
-            "plain": "---"
-        },
-        lparen: {
-            "default": "("
-        },
-        rparen: {
-            "default": ")"
-        }
+        startpara: point("<p>"),
+        endpara: point("</p>"),
+        startem: point("<em>"),
+        endem: point("</em>"),
+        startlink: point("<a href='http://example.com/?" + Math.random() + "'>"),
+        endlink: point("</a>"),
+        comma: point(","),
+        semicolon: point(";"),
+        period: point("."),
+        exclamation: point("!"),
+        open: point("<q>"),
+        close: point("</q>"),
+        dash: point("&mdash;"),
+        lparen: point("("),
+        rparen: point(")"),
     };
 
 
@@ -204,11 +153,11 @@ var englipsum = function() {
                     shouldCapitalize = false;
                 } else {
                     if (options.links && Math.random() < 0.01) {
-                        output += space + punct.select(punct.startlink, options.target) +
-                            tok + punct.select(punct.endlink, options.target);
+                        output += space + punct.startlink +
+                            tok + punct.endlink;
                     } else if (options.ems && Math.random() < 0.03) {
-                        output += space + punct.select(punct.startem, options.target) +
-                            tok + punct.select(punct.endem, options.target);
+                        output += space + punct.startem +
+                            tok + punct.endem;
                     } else {
                         output+= space + tok.toString();
                     }
@@ -217,7 +166,7 @@ var englipsum = function() {
                 if (tok === punct.open || tok === punct.lparen) {
                     output += " ";
                 }
-                output += punct.select(tok, options.target);
+                output += tok;
                 if (tok === punct.period || tok === punct.exclamation) {
                     shouldCapitalize = true;
                 }
@@ -232,9 +181,8 @@ var englipsum = function() {
     function generate(options) {
         var str = "";
         for (var i=0; i< (options.paragraphs || 5); i++) {
-            str += punct.select(punct.startpara, options.target) +
-                makeparagraph(options) +
-                punct.select(punct.endpara, options.target);
+            str += punct.startpara +
+                makeparagraph(options) + punct.endpara;
         }
         return str;
     }
@@ -252,7 +200,6 @@ var englipsum = function() {
                     opts = JSON.parse(el.innerText);
                 } catch(e) {
                 }
-                opts.target = "html";
                 el.innerHTML = englipsum(opts);
             });
         });

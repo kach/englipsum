@@ -10,7 +10,13 @@ It generates grammatically-valid English that makes sense in context. It looks r
 
 ## Usage
 
-Simply include `englipsum.js` in your HTML file. Elements of class `englipsum` will be populated with placeholder text automatically.
+Simply include `englipsum.js` in your HTML file:
+
+```html
+<script src="https://github.com/Hardmath123/englipsum/raw/gh-pages/englipsum.js></script>
+```
+
+Elements of class `englipsum` will be populated with placeholder text automatically.
 
 ```html
 <div class="englipsum"></div>

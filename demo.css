@@ -16,6 +16,13 @@ body {
     line-height: 1.4em;
 }
 
+pre#source {
+    font-family: Monaco, Menlo, Courier, monospace;
+    width: 40em;
+    overflow: wrap;
+    display: block;
+    word-break: break-all;
+}
 
 /* Demo stuff */
 /* Maybe I overdid it? */
