@@ -1,5 +1,7 @@
 # Englipsum
 
+See http://hardmath123.github.io/englipsum
+
 The accepted Lorem Ipsum text is inherently messy. It has different character ratios and prevalent digraphs. The words are foreign to most of us, so they attract attention. There's barely any interesting formatting, because Cicero didn't have hyperlinks.
 
 Englipsum solves those problems.

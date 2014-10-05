@@ -6,6 +6,20 @@ body {
     margin: 0px;
     padding: 0px;
 }
+
+#content {
+    max-width: 40em;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+    padding: 10px;
+    line-height: 1.4em;
+}
+
+
+/* Demo stuff */
+/* Maybe I overdid it? */
+
 #demo-text {
     max-width: 40em;
     margin-left: auto;
