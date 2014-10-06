@@ -2,22 +2,22 @@
 
 See http://hardmath123.github.io/englipsum.
 
-The accepted Lorem Ipsum text is inherently messy. It has different character ratios and prevalent digraphs. The words are foreign to most of us, so they attract attention. There's barely any interesting formatting, because Cicero didn't have hyperlinks.
-
-Englipsum solves those problems.
-
-It generates grammatically-valid English that makes sense in context (so it already beats a lot of humans at English). It looks right, thus allowing itself to be ignored. Englipsum pays attention to the little details that make text natural-looking.
-
 ## Usage
 
 Simply include `englipsum.js` in your HTML file:
 
 ```html
 <script src="https://github.com/Hardmath123/englipsum/raw/gh-pages/englipsum.js"></script>
-
+```
 OR (an easy-to-remember-but-not-guaranteed-to-always-exist alternative)
-
+```html
 <script src="http://is.gd/englipsum"></script>
+```
+OR (an it-works-offline-but-I-need-to-download-a-file alternative)
+```html
+$ curl https://github.com/Hardmath123/englipsum/raw/gh-pages/englipsum.js > englipsum.js
+<script src="englipsum.js"></script>
+
 ```
 
 Elements of class `englipsum` will be populated with placeholder text automatically.
