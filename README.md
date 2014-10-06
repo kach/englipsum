@@ -69,3 +69,11 @@ Placeholder text about animals:
 }
 </div>
 ```
+
+## Node
+
+Englipsum is published on `npm`. I'm not sure how it'll help you, but feel free to `npm install englipsum`.
+
+## Contributing
+
+Yeah. PRs are appreciated. Ideally, there would be larger dictionaries, and more phrases.

@@ -1,0 +1,27 @@
+{
+  "name": "englipsum",
+  "version": "0.0.0",
+  "description": "Usable placeholder text",
+  "main": "englipsum.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hardmath123/englipsum.git"
+  },
+  "keywords": [
+    "lorem",
+    "ipsum",
+    "lipsum",
+    "placeholder",
+    "text",
+    "typography"
+  ],
+  "author": "Hardmath123",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hardmath123/englipsum/issues"
+  },
+  "homepage": "https://github.com/Hardmath123/englipsum"
+}
