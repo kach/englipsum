@@ -42,6 +42,7 @@ You can customize settings by including JSON in the element:
 | `links`      | Generate random links? (they are uniquely stamped so that testing `a:visited` is easy) |
 | `ems`        | Italicize random words? |
 | `dict`       | Provide your own dictionary. Object with fields (all optional) `nouns`, `verbs`, `adjs`, `advs` |
+| `dict`       | Reference a provided dictionary. Possible values: `"farm"` |
 
 ## Examples
 

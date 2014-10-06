@@ -7,6 +7,14 @@ var englipsum = function() {
         preps: ["near", "beside", "disregarding", "despite"]
     };
 
+
+    var extra_dicts = {
+        "farm": {
+            "nouns": ["cow", "horse", "chicken", "farmer", "sheep", "goat", "man", "woman", "child", "person", "producer", "consumer", "retailer", "middleman", "tomato", "carrot", "field", "produce", "lettuce", "cheese", "seed", "land", "pesticide", "fertilizer", "government"],
+            "verbs": ["is", "helps", "gives", "produces", "consumes", "assists"]
+        }
+    };
+
     function argsToArray(a) {
         var ans = [];
         for (var i=0; i<a.length; i++) {
@@ -179,6 +187,11 @@ var englipsum = function() {
     };
 
     function generate(options) {
+        if (options.dict && options.dict.constructor === String) {
+            if (extra_dicts[options.dict]) {
+                options.dict = extra_dicts[options.dict];
+            }
+        }
         var str = "";
         for (var i=0; i< (options.paragraphs || 5); i++) {
             str += punct.startpara +
