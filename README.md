@@ -1,6 +1,6 @@
 # Englipsum
 
-See http://hardmath123.github.io/englipsum
+See http://hardmath123.github.io/englipsum.
 
 The accepted Lorem Ipsum text is inherently messy. It has different character ratios and prevalent digraphs. The words are foreign to most of us, so they attract attention. There's barely any interesting formatting, because Cicero didn't have hyperlinks.
 
@@ -13,7 +13,11 @@ It generates grammatically-valid English that makes sense in context (so it alre
 Simply include `englipsum.js` in your HTML file:
 
 ```html
-<script src="https://github.com/Hardmath123/englipsum/raw/gh-pages/englipsum.js></script>
+<script src="https://github.com/Hardmath123/englipsum/raw/gh-pages/englipsum.js"></script>
+
+OR (an easy-to-remember-but-not-guaranteed-to-always-exist alternative)
+
+<script src="http://is.gd/englipsum"></script>
 ```
 
 Elements of class `englipsum` will be populated with placeholder text automatically.
