@@ -67,12 +67,18 @@ Placeholder text about animals:
 <div class="englipsum">
 {
     "dict": {
-        "nouns": ["cow", "pig", "sheep", "fish", "farmer", "tractor"],
-        "verbs": ["makes", "grows", "works", "produces", "helps"]
+        "nouns": ["cow", "pig", "sheep", "fish"],
+        "verbs": ["eats", "hunts", "protects", "kills", "loves", "adores", "licks"]
     }
 }
 </div>
 ```
+
+## How does this thing work?
+
+Short answer: by not using Markov chains.
+
+Less short answer: Englipsum contains lots of templates, which reference other templates recursively (for example, the template for a sentence references the template for a noun and a verb). The generator walks this template-tree, choosing random paths when asked to branch. It's the opposite of parsing.
 
 ## Node
 
