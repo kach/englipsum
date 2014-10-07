@@ -76,7 +76,7 @@ Placeholder text about animals:
 
 ## Node
 
-Englipsum is published on `npm`. I'm not sure how it'll help you, but feel free to `npm install englipsum`.
+Englipsum is published on `npm`. I'm not sure how it'll help you, but feel free to `npm install englipsum`. Maybe someone will invent a good lipsum command-line tool someday.
 
 ## Contributing
 
